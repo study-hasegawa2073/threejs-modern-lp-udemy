@@ -1,5 +1,8 @@
 import './style.css';
 import * as THREE from 'three';
+import * as dat from 'lil-gui';
+
+const gui = new dat.GUI();
 
 const canvas = document.querySelector('.webgl');
 const scene = new THREE.Scene();
@@ -29,6 +32,11 @@ const material = new THREE.MeshPhysicalMaterial({
   roughness: 0.37,
   flatShading: true,
 });
+
+gui.addColor(material, 'color');
+gui.add(material, 'metalness').min(0).max(1).step(0.001);
+gui.add(material, 'roughness').min(0).max(1).step(0.001);
+
 const mesh1 = new THREE.Mesh(new THREE.TorusGeometry(1, 0.4, 16, 60), material);
 const mesh2 = new THREE.Mesh(new THREE.OctahedronGeometry(), material);
 const mesh3 = new THREE.Mesh(
