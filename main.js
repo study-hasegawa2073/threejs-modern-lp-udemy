@@ -70,12 +70,20 @@ let speed = 0;
 let rotation = 0;
 window.addEventListener('wheel', (event) => {
   speed += event.deltaY * 0.0002;
-  console.log(speed);
 });
 function rot() {
   rotation += speed;
   speed *= 0.93;
-  mesh1.position.x = rotation;
+
+  mesh1.position.x = 2 + 3.8 * Math.cos(rotation);
+  mesh1.position.z = -3 + 3.8 * Math.sin(rotation);
+  mesh2.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI / 2);
+  mesh2.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI / 2);
+  mesh3.position.x = 2 + 3.8 * Math.cos(rotation + Math.PI);
+  mesh3.position.z = -3 + 3.8 * Math.sin(rotation + Math.PI);
+  mesh4.position.x = 2 + 3.8 * Math.cos(rotation + 3 * (Math.PI / 2));
+  mesh4.position.z = -3 + 3.8 * Math.sin(rotation + 3 * (Math.PI / 2));
+
   window.requestAnimationFrame(rot);
 }
 rot();
